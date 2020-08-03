@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpComprobante" language="java" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0f0b51a-2b7c-4c40-9f5a-e4e40488c30b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="apellido" class="java.lang.String"/>
+	<parameter name="legajo" class="java.lang.String"/>
+	<parameter name="dni" class="java.lang.Integer"/>
+	<parameter name="curso" class="java.lang.String"/>
+	<parameter name="cursando" class="java.lang.String"/>
+	<parameter name="cuota" class="java.lang.Float"/>
+	<parameter name="interes" class="java.lang.Float"/>
+	<parameter name="fechavencimiento" class="java.lang.String"/>
+	<parameter name="deuda" class="java.lang.Float"/>
+	<parameter name="fechapago" class="java.lang.String"/>
+	<parameter name="mes" class="java.lang.String"/>
+	<parameter name="importe" class="java.lang.Float"/>
+	<queryString>
+		<![CDATA[select 1]]>
+	</queryString>
+	<field name="1" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="397" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="100" uuid="a4d1bf95-510a-4b55-ab13-53ebe6a2d53d"/>
+			</rectangle>
+			<image>
+				<reportElement x="13" y="11" width="94" height="78" uuid="c2c24170-e3f8-4243-a598-7cf544444b3d"/>
+				<imageExpression><![CDATA["C:\\Users\\cytrex\\Documents\\NetBeansProjects\\sistemaYes\\src\\iconos\\logo_yes.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="112" y="12" width="130" height="14" forecolor="#FF0000" uuid="3f280d77-a1f1-49f8-9083-94387e485358"/>
+				<textElement>
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[YOUR ENGLISH SCHOOL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="26" width="130" height="14" forecolor="#FF0000" uuid="ec82c585-92a6-4b0c-8e1a-408eb4d7ab2e"/>
+				<textElement>
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Y.E.S.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="52" width="151" height="12" uuid="dd2b3838-f5b8-4788-808e-cca1613bee8e"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Avenida Siria N°19 - San Pedro de Jujuy ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="64" width="151" height="12" uuid="7a28c969-475d-47a0-9749-840e07810e1b"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Provincia de Jujuy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="77" width="151" height="12" uuid="cb93451d-54c8-4c64-9675-6d1a55aaa76a"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Telefono (03888)  426725]]></text>
+			</staticText>
+			<line>
+				<reportElement x="296" y="0" width="1" height="100" uuid="24224821-50a0-4e0b-a8ba-e2d60895d250"/>
+			</line>
+			<rectangle>
+				<reportElement x="297" y="26" width="129" height="14" uuid="2b801283-14ef-4d2b-8341-03ed3f76a499"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="426" y="26" width="129" height="14" uuid="2797e636-6252-4440-b7cb-3bd4479f4c08"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="426" y="26" width="129" height="14" uuid="3cd117f2-ab1b-41d5-9c4e-44eee9ada9ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="26" width="129" height="14" uuid="c797e913-f0ed-4032-ad41-73bed224ee2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[LUGAR DE EMISION]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="297" y="40" width="129" height="24" uuid="bf0e4f4a-dee3-4219-9945-073368b678b6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="426" y="40" width="129" height="24" uuid="c9af6ed9-1c0d-4e8a-8394-ab3c83e7416f"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="426" y="40" width="129" height="24" uuid="30c0d035-ffb5-4a1b-927d-6964124d5c51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="426" y="0" width="129" height="26" uuid="c9be625b-a88e-4d2b-99b1-a1373044a713"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[RECIBO N° 0000000000]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="78" width="69" height="20" uuid="1966bd55-8838-4cce-8e3a-d4df8bc49997"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORIGINAL]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="0" y="100" width="555" height="79" uuid="27e0ec75-f1fe-41e9-bad8-c9ea87a49526"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="111" width="94" height="12" uuid="f876f2d4-391a-48c6-ad63-96d22e4e75b3"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOMBRE Y APELLIDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="133" width="94" height="12" uuid="de1eeb80-427a-49f1-9566-8626f3382bcf"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LEGAJO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="133" width="26" height="12" uuid="1fb33d00-ea54-48f6-91f0-48dd1e3025a1"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="155" width="94" height="12" uuid="db7a63d0-323b-44ce-9180-3bd74640c322"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[LOCALIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="155" width="166" height="12" uuid="38f0f854-20b0-438a-b6f3-745521397325"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[San Pedro de Jujuy, Jujuy - Argentina]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="0" y="179" width="555" height="218" uuid="d1a6a993-94ae-42dc-8057-86957f28d615"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="190" width="94" height="12" uuid="52517b32-f368-4aa0-a4a1-1c1b1e39c185"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CURSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="190" width="55" height="12" uuid="3b9d346e-7663-48ee-ad03-bc7ce7d14e68"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CURSANDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="213" width="94" height="12" uuid="36d7d9c9-92a3-4229-8a7f-cd3837b3a829"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CUOTA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="213" width="83" height="12" uuid="3f212672-1599-4347-8ee1-c7ea077d7255"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[INTERES DEL MES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="260" width="83" height="12" uuid="eb728b96-d25a-4e90-82a8-270b3c82ffd5"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FECHA DE PAGO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="237" width="94" height="12" uuid="6f11e3ed-6cc2-4587-8b98-95178054878a"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VENCIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="260" width="95" height="12" uuid="42a7a373-38ab-4827-bdc4-f43e9e4dd67b"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[EN CONCEPTO DE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="283" width="218" height="12" uuid="5d0c48c1-667b-47d4-9c4e-3854bf0e8563"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[PAGO DE LA CUOTA MENSUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="283" width="83" height="12" uuid="047e16e9-ee53-4672-9127-fb81b62456b5"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="320" width="51" height="12" uuid="a85683bf-9d29-4ef8-839d-7e1da33b619d"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="237" width="83" height="12" uuid="972560e0-b5fd-4fb7-8037-cf79f1b85a1c"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[DEUDA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="360" width="30" height="20" uuid="36a8c403-b55e-431c-8df1-8c672eb6e9e2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="75" y="360" width="127" height="20" forecolor="#FF0000" backcolor="#FF9999" uuid="dc337e5b-4225-488b-a12e-3e004b4f4b69"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="400" y="383" width="100" height="12" uuid="8faf6b2f-9cde-4d33-894e-c8ee79bf99c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[SELLO Y FIRMA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="384" y="381" width="131" height="1" uuid="27b65da3-292d-4092-9c34-d7384333deb6"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="112" y="133" width="167" height="12" uuid="ebea233b-a753-4420-b33e-6c5cef424a13"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{legajo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="334" y="133" width="150" height="12" uuid="c6b338d2-3a5a-44e5-8904-3d6457a4f012"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dni}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="111" width="166" height="12" uuid="97cd99c4-7ead-4c17-b356-a638b6b42753"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="296" y="111" width="192" height="12" uuid="37611dc4-5d21-4aaa-a5e2-31e414a52859"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{apellido}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="190" width="233" height="12" uuid="69fc7087-09c9-409d-903a-3c9b85e0cb63"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="190" width="108" height="12" uuid="84ea0dd8-e220-4b3d-a457-f246e3df74c6"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cursando}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="127" y="213" width="115" height="12" uuid="f9260459-2cf9-4074-a11d-715bde1b7906"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cuota}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="213" width="116" height="12" uuid="8b27fe0f-8a55-4856-8d01-afc029719baf"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{interes}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="237" width="129" height="12" uuid="e1457ab8-e128-44ac-95b8-90264a1377f2"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechavencimiento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="237" width="116" height="12" uuid="b7158379-5ec2-4bdd-a592-cd3546b972d5"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{deuda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="357" y="260" width="129" height="12" uuid="f742b0c6-6c18-494a-85b7-7afff0083784"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechapago}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="357" y="283" width="129" height="12" uuid="468bdecb-a981-4251-abc7-56f3cb299a9c"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="92" y="320" width="105" height="12" uuid="d46e849d-2372-416b-9e72-30f0aa86b424"/>
+				<textElement>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{importe}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="75" y="360" width="127" height="20" uuid="62d76abf-a1ff-495b-b916-4ea72d73b002"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cuota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="113" y="213" width="10" height="12" uuid="290ea31c-26fd-4750-82fa-071a6cca18e8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="213" width="10" height="12" uuid="a0cbc7f0-26d7-4a0f-9162-2414df7ef43b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="237" width="10" height="12" uuid="93a7f1fd-6b63-43ba-bda7-62efbfe65916"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="320" width="12" height="12" uuid="cd505369-31b7-4f67-a0af-5bd9991128da"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="360" width="17" height="20" uuid="8ea4a04c-1040-4769-a5ea-7c26209bea04"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>
