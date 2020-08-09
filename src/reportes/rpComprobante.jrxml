@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpComprobante" language="java" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0f0b51a-2b7c-4c40-9f5a-e4e40488c30b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpComprobante" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0f0b51a-2b7c-4c40-9f5a-e4e40488c30b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="imagen" class="java.lang.Object"/>
 	<parameter name="nombre" class="java.lang.String"/>
 	<parameter name="apellido" class="java.lang.String"/>
 	<parameter name="legajo" class="java.lang.String"/>
@@ -13,7 +14,7 @@
 	<parameter name="interes" class="java.lang.Float"/>
 	<parameter name="fechavencimiento" class="java.lang.String"/>
 	<parameter name="deuda" class="java.lang.Float"/>
-	<parameter name="fechapago" class="java.lang.String"/>
+	<parameter name="fechapago" class="java.util.Date"/>
 	<parameter name="mes" class="java.lang.String"/>
 	<parameter name="importe" class="java.lang.Float"/>
 	<queryString>
@@ -30,7 +31,7 @@
 			</rectangle>
 			<image>
 				<reportElement x="13" y="11" width="94" height="78" uuid="c2c24170-e3f8-4243-a598-7cf544444b3d"/>
-				<imageExpression><![CDATA["C:\\Users\\cytrex\\Documents\\NetBeansProjects\\sistemaYes\\src\\iconos\\logo_yes.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="112" y="12" width="130" height="14" forecolor="#FF0000" uuid="3f280d77-a1f1-49f8-9083-94387e485358"/>
@@ -328,7 +329,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{deuda}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
 				<reportElement x="357" y="260" width="129" height="12" uuid="f742b0c6-6c18-494a-85b7-7afff0083784"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>

@@ -6,9 +6,11 @@
 package interfaces;
 import static interfaces.abmPrincipal.panelA;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+//import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
@@ -30,6 +33,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -68,7 +72,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
     int idca,idalu,idper,idcur,idpi;
     int añoinsc,dni,maxpago;
     float deudains,importe,precio,resto,variabledeuda;
-    String curso,cursando,nombre,apellido,estado,legajo,fechapins,pdfhora;
+    String curso,cursando,nombre,apellido,estado,legajo,pdfhora;
     Date fechapago;
     public int cboxitem=0;
     boolean band=false,var=false;
@@ -156,7 +160,6 @@ public class abmEstado extends javax.swing.JInternalFrame {
             precio=Float.parseFloat(datoest[2].toString());
             importe=Float.parseFloat((datoest[4]).toString());
             fechapago=(Date) datoest[5];
-            fechapins=String.valueOf(fechapago);
             band = fechapago==null;//si fechapago=null devuelve true en caso contrario false
         }
         catch(Exception e){
@@ -297,7 +300,10 @@ public class abmEstado extends javax.swing.JInternalFrame {
         int op=JOptionPane.showConfirmDialog(this, "Desea generar el comprobante?");
         switch(op){
             case 0:
+                ImageIcon imagen=new ImageIcon(getClass().getResource("/iconos/logo_yes.png"));//Obtenemos como fuente de la imagen nuestro proyecto jar en la carpeta dist
                 HashMap<String, Object> parametros = new HashMap<>();
+                //Parametros de la imagen
+                parametros.put("imagen", imagen.getImage());
                 //Parametros del alumno
                 parametros.put("nombre", nombre);
                 parametros.put("apellido", apellido);
@@ -307,11 +313,13 @@ public class abmEstado extends javax.swing.JInternalFrame {
                 parametros.put("curso", curso);
                 parametros.put("cursando", cursando);
                 parametros.put("precioins", precio);
-                parametros.put("fechapago", fechapins);
+                parametros.put("fechapago", fechapago);
                 parametros.put("deudains", variabledeuda);
                 parametros.put("importe", importe);
                 try{    
-                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteInsc.jrxml");
+//                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteInsc.jrxml");
+//                    JasperDesign jd=JRXmlLoader.load("src/reportes/rpComprobanteInsc.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
+                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobanteInsc.jrxml"));
                     JasperReport report=JasperCompileManager.compileReport(jd);
                     JasperPrint print=JasperFillManager.fillReport(report, parametros, new JREmptyDataSource());
                     JasperViewer jv=new JasperViewer(print,false);
@@ -345,7 +353,6 @@ public class abmEstado extends javax.swing.JInternalFrame {
             rss=clase.Estado.buscarInforme(cnx, idca);
             while(rss.next()){
                 fechapago=rss.getDate(1);
-                fechapins=String.valueOf(fechapago);
                 importe=rss.getFloat(2);
             }            
         }
@@ -1150,7 +1157,6 @@ public class abmEstado extends javax.swing.JInternalFrame {
         estado=tblcuotaIns.getValueAt(fila, 3).toString();
         importe=Float.parseFloat(tblcuotaIns.getValueAt(fila, 4).toString());
         fechapago=(Date) (tblcuotaIns.getValueAt(fila, 5));
-        fechapins=String.valueOf(fechapago);
         buscarIDPrecio();
         var=true;
     }//GEN-LAST:event_tblcuotaInsMouseClicked

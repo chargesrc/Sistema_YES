@@ -9,6 +9,7 @@ package interfaces;
 //import com.itextpdf.text.pdf.PdfWriter;
 //import java.io.FileNotFoundException;
 //import java.io.FileOutputStream;
+import static com.itextpdf.text.pdf.PdfFileSpecification.url;
 import conexion.Conexion;
 import static interfaces.abmPrincipal.panelA;
 import java.awt.Dimension;
@@ -18,6 +19,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -96,7 +98,8 @@ public class abmPagar extends javax.swing.JInternalFrame {
     int maxmes,contmes;
     String estadomes;
     //Variables para el reporte
-    String legajo,nombre,apellido,fechapagado,mespago,pdfhora;
+    String legajo,nombre,apellido,mespago,pdfhora;
+    Date fechapagado;
     int maxpago,minpago;
     
     public int cboxitem=0;
@@ -218,7 +221,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
                 datosdos[2]=rs.getFloat("importe");
                 datosdos[3]=rs.getString("estado");
                 datosdos[4]=rs.getFloat("interes");
-                datosdos[5]=rs.getString("fechaPago");
+                datosdos[5]=rs.getDate("fechaPago");
                 modelodos.addRow(datosdos);
             }
         }
@@ -679,7 +682,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
                         break;
                 }
                 fechainteres=String.valueOf(rss.getDate(2));
-                fechapagado=String.valueOf(rss.getDate(3));
+                fechapagado=rss.getDate(3);
                 importetabla=rss.getFloat(4);
                 interesalu=rss.getFloat(5);
             }
@@ -691,7 +694,9 @@ public class abmPagar extends javax.swing.JInternalFrame {
     
     @SuppressWarnings("unchecked")
     public void generarComprobante(){
+        ImageIcon icono=new ImageIcon(getClass().getResource("/iconos/logo_yes.png"));//Obtiene el recurso de la imagen del jar y no de la ruta
         Map parametros= Collections.synchronizedMap(new HashMap());
+        parametros.put("imagen", icono.getImage());
         parametros.put("nombre", nombre);
         parametros.put("apellido", apellido);
         parametros.put("legajo", legajo);
@@ -701,7 +706,9 @@ public class abmPagar extends javax.swing.JInternalFrame {
         parametros.put("deuda", deudaalu);
         parametros.put("idca", idca);
         try {
-            JasperReport report=JasperCompileManager.compileReport(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteGen.jrxml");
+//            JasperReport report=JasperCompileManager.compileReport(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteGen.jrxml");
+//            JasperReport report=JasperCompileManager.compileReport("src/reportes/rpComprobanteGen.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
+            JasperReport report=JasperCompileManager.compileReport(getClass().getResourceAsStream("/reportes/rpComprobanteGen.jrxml"));//Obtenemos el recurso del jar del proyecto creado
             JasperPrint print=JasperFillManager.fillReport(report,parametros,cnx);
             JasperViewer view=new JasperViewer(print,false);
             view.setTitle("Comprobante de Pago General");
@@ -731,8 +738,13 @@ public class abmPagar extends javax.swing.JInternalFrame {
         int op=JOptionPane.showConfirmDialog(this, "Deseas generar el comprobante?");
         switch(op){
             case 0:
+//                File imagen=new File("src/iconos/logo_yes.png");
+                ImageIcon imagen=new ImageIcon(getClass().getResource("/iconos/logo_yes.png"));
                 Map parametros = Collections.synchronizedMap(new HashMap());
 //                HashMap<String, Object> parametros = new HashMap<>();
+                //Parametros de la imagen
+//                parametros.put("imagen", imagen.getAbsolutePath());
+                parametros.put("imagen", imagen.getImage());
                 //Parametros del alumno
                 parametros.put("nombre", nombre);
                 parametros.put("apellido", apellido);
@@ -749,7 +761,9 @@ public class abmPagar extends javax.swing.JInternalFrame {
                 parametros.put("mes", mespago);
                 parametros.put("importe", importetabla);
                 try{
-                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobante.jrxml");
+//                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobante.jrxml");
+//                    JasperDesign jd=JRXmlLoader.load("src/reportes/rpComprobante.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
+                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobante.jrxml"));//pueden cargar ambos ficheros jasper cambiar JRXmlLoader por JRLoader deberan cargarlo com dato stream
                     JasperReport report=JasperCompileManager.compileReport(jd);
                     final JasperPrint print=JasperFillManager.fillReport(report, parametros, new JREmptyDataSource());
                     JasperViewer ver=new JasperViewer(print, false);//el false evita que se cierre la aplicacion cuando se cierre el comprobante
@@ -1889,7 +1903,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
 //        importe=Float.parseFloat(tablapagos.getValueAt(fila, 2).toString());
         estadomes=tablapagos.getValueAt(fila, 3).toString();
         interesalu=Float.parseFloat(tablapagos.getValueAt(fila, 4).toString());
-        fechapagado=String.valueOf(tablapagos.getValueAt(fila, 5));
+        fechapagado=(Date)(tablapagos.getValueAt(fila, 5));
         idc=0;
         try{
             idc=clase.Pagar.mesPagado(cnx, idca,fechainteres,estadomes);
@@ -2147,7 +2161,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JLabel lblalumnos;
     private javax.swing.JLabel lblbuscar;
     private javax.swing.JLabel lblcambio;
