@@ -1,1 +1,9 @@
 Resueltos pequeñas advertencias al crear el Dist.
+
+Resuelto el error al cargar un reporte y la imagen asociada a un reporte
+de jasper en una nueva maquina (maquina cliente). Desde ahora todos los
+recursos del reporte se cargarn desde su fuente y no de una direccion
+(absoluta o relativa).
+
+El instalador de la aplicacion solo le faltara el motor de la base de datos
+para que el programa funcione con datos del cliente.
