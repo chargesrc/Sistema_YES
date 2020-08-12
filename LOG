@@ -1,9 +1,31 @@
-Resueltos pequeñas advertencias al crear el Dist.
+Se esta resolviendo un problema de visualizacion de una interface
+al ejecutarlo desde el instalador jar
 
-Resuelto el error al cargar un reporte y la imagen asociada a un reporte
-de jasper en una nueva maquina (maquina cliente). Desde ahora todos los
-recursos del reporte se cargarn desde su fuente y no de una direccion
-(absoluta o relativa).
+Se actualizo el manual de usuario por los cambios recientes.
+
+Actualizacion de los iconos del sistema.
+
+Se hicieron pequeños cambios en todo el programa.
+
+Se cambio el procedimiento del algoritmo de registros del pago de la
+cuota de inscripcion para que tenga el mismo comportamiento que los
+registros del pago de las cuotas.
+
+Agregadas nuevas funcionalidades en las interfaces del pago de las cuotas
+y el pago de la cuota de inscripcion. Resuelto problemas que generaban
+un saldo negativo por el mal uso de la aplicacion.
+
+Resuelto problemas de acceso a areas de la aplicacion (manual e interfaces)
+desde el ejecutable jar
+Se podra acceder a areas del programas en cualquier computador.
 
 El instalador de la aplicacion solo le faltara el motor de la base de datos
 para que el programa funcione con datos del cliente.
+
+Resuelto el error al cargar un reporte y la imagen asociada al reporte
+de jasper en una nueva maquina (maquina cliente). Desde ahora todos los
+recursos del reporte se cargaran desde su fuente y no de una direccion
+(absoluta o relativa).
+Se podra acceder a los reportes del prgrama en cualquier computador.
+
+Resueltos pequeñas advertencias al crear el Dist.
