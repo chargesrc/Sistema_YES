@@ -14,7 +14,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,7 +63,6 @@ public class abmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator3 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         inscribirBtn = new javax.swing.JButton();
@@ -94,7 +96,8 @@ public class abmPrincipal extends javax.swing.JFrame {
         ManualItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         InformacionItem = new javax.swing.JMenuItem();
-        FeedbackMenu = new javax.swing.JMenu();
+        CommentMenu = new javax.swing.JMenu();
+        ComentariosItem = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -314,7 +317,7 @@ public class abmPrincipal extends javax.swing.JFrame {
         NavegarMenu.add(InscribirItem);
 
         PagarItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        PagarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money.png"))); // NOI18N
+        PagarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_monetization_on_black_18dp.png"))); // NOI18N
         PagarItem.setText("Pagar");
         PagarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,7 +327,7 @@ public class abmPrincipal extends javax.swing.JFrame {
         NavegarMenu.add(PagarItem);
 
         PagarInsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money_dollar.png"))); // NOI18N
+        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_attach_money_black_18dp.png"))); // NOI18N
         PagarInsItem.setText("Pagar Inscripción");
         PagarInsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,16 +400,21 @@ public class abmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(AyudaMenu);
 
-        FeedbackMenu.setForeground(new java.awt.Color(204, 204, 204));
-        FeedbackMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comment.png"))); // NOI18N
-        FeedbackMenu.setText("Feedback");
-        FeedbackMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        FeedbackMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                FeedbackMenuMouseClicked(evt);
+        CommentMenu.setForeground(new java.awt.Color(204, 204, 204));
+        CommentMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comment.png"))); // NOI18N
+        CommentMenu.setText("Feedback");
+        CommentMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        ComentariosItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_comment_black_18dp.png"))); // NOI18N
+        ComentariosItem.setText("Comentarios");
+        ComentariosItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComentariosItemActionPerformed(evt);
             }
         });
-        jMenuBar1.add(FeedbackMenu);
+        CommentMenu.add(ComentariosItem);
+
+        jMenuBar1.add(CommentMenu);
 
         Salir.setForeground(new java.awt.Color(204, 204, 204));
         Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close_delete.png"))); // NOI18N
@@ -436,7 +444,7 @@ public class abmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     @Override
     public Image getIconImage() {//Icono del sistema
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/tag_violet.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/output.png"));
         return retValue;
     }
     private void inscribirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscribirBtnActionPerformed
@@ -548,8 +556,9 @@ public class abmPrincipal extends javax.swing.JFrame {
         Dimension desktopSize=panelA.getSize();
         Dimension FrameSize=info.getSize();
         info.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
-        panelA.add(info);
         info.show();
+//        info.setVisible(true);
+        panelA.add(info);
     }//GEN-LAST:event_InformacionItemActionPerformed
 
     private void BackupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackupMenuMouseClicked
@@ -601,26 +610,31 @@ public class abmPrincipal extends javax.swing.JFrame {
         try {
             //Direccion Absoluta del archivo cuando el archivo se encuentra fuera del sistema en el equipo/Se accede desde el path donde este el archivo.Si el archivo se mueve o renombra no lo entrara el sistema
             //Direccion Realitva del archivo cuando el archivo se encuentra dentro del proyecto o sistema/Se puede acceder anteponiendo src/ruta
-            File pdf=new File ("src/manual/manual-de-usuario.pdf");
-            Desktop.getDesktop().open(pdf);//Usamos el programa por predeterminado que tiene asignado el sistema operativo
+//            File pdf=new File ("src/manual/manual-de-usuario.pdf");//Buscamos el archivo//Solo funciona con el IDE no funciona al crear el ejecutable
+//            Desktop.getDesktop().open(pdf);//Usamos el programa predeterminado que tiene asignado el sistema operativo
+            //Se puede cambiar la ruta por una mas permanente
+            File temp=new File(System.getProperty("java.io.tmpdir")+"um-tmp.pdf");//Accedemos y guardamos nuestro manual (pdf) como archivo temporal del sistema
+            FileOutputStream salida;
+            try (InputStream entrada = this.getClass().getResourceAsStream("/manual/manual-de-usuario.pdf")) {//Creamos un flujo de entrada el cual lo cargaremos con el pdf de nuestro proyecto
+                salida = new FileOutputStream(temp);//Creamos un flujo de salida para poder escribir sobre el fichero temporal
+                try (FileWriter pdf = new FileWriter(temp)) {//Cargamos de informacion al pdf temporal con el pdf del proyecto
+                    byte[] buffer=new byte[1024*512];//Creamos un arreglo generico que soporte la informacion 1kB*512B se usa para todo tipo de archivos
+                    int controlbuffer;//Controlamos la informacion de bytes
+                    while((controlbuffer=entrada.read(buffer))!=-1){//Mientras haya bytes por leer se ejecutara el ciclo
+                        salida.write(buffer,0,controlbuffer);//Escribimos sobre el archivo temporal los bytes leidos
+                    }
+                }
+            }
+            salida.close();//cerramos los flujos
+            Desktop.getDesktop().open(temp);//Abrimos el archivo temporal creado
+            //Dependiendo de la configuracion del sistema, los archivos temporales se borraran o no al apagar el equipo
+            //Acceder a la carpeta temporal en SO linux es diferente "/tmp" en linux. Este SO elimina los ficheros al apagar el equipo
+            //Los archivos temporales se crearan segun se necesite
         }
         catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_ManualItemActionPerformed
-
-    private void FeedbackMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FeedbackMenuMouseClicked
-        // TODO add your handling code here:
-        panelA.removeAll();
-        panelA.repaint();
-        abmFeedback comentario=new abmFeedback();
-        Dimension desktopSize=panelA.getSize();
-        Dimension FrameSize=comentario.getSize();
-        comentario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
-        panelA.add(comentario);
-        comentario.show();
-        comentario.txtarcomentario.requestFocus(true);
-    }//GEN-LAST:event_FeedbackMenuMouseClicked
 
     private void HorarioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HorarioItemActionPerformed
         // TODO add your handling code here:
@@ -660,6 +674,21 @@ public class abmPrincipal extends javax.swing.JFrame {
         estado.show();
         estado.txtbuscar.requestFocus(true);
     }//GEN-LAST:event_PagarInsItemActionPerformed
+
+    private void ComentariosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComentariosItemActionPerformed
+        // TODO add your handling code here:
+        panelA.removeAll();
+        abmFeedback comentario=new abmFeedback();
+        Dimension desktopSize=panelA.getSize();
+        Dimension FrameSize=comentario.getSize();
+        comentario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
+        panelA.add(comentario);
+        comentario.pack();
+        comentario.setVisible(true);
+        Animacion.Animacion.mover_derecha(0 , 105, 5, 5, panelA);
+        comentario.show();
+        comentario.txtarcomentario.requestFocus(true);
+    }//GEN-LAST:event_ComentariosItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -704,8 +733,9 @@ public class abmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem AlumnoItem;
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JMenu BackupMenu;
+    private javax.swing.JMenuItem ComentariosItem;
+    private javax.swing.JMenu CommentMenu;
     private javax.swing.JMenuItem CursoItem;
-    private javax.swing.JMenu FeedbackMenu;
     private javax.swing.JMenuItem HorarioItem;
     private javax.swing.JMenuItem InformacionItem;
     private javax.swing.JMenuItem InscribirItem;
@@ -729,7 +759,6 @@ public class abmPrincipal extends javax.swing.JFrame {
     public javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;

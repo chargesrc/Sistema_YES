@@ -284,7 +284,7 @@ public class abmRegistros extends javax.swing.JInternalFrame {
         });
         jPopupMenu1.add(borrarCursoItem);
 
-        PagarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money.png"))); // NOI18N
+        PagarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_monetization_on_black_18dp.png"))); // NOI18N
         PagarItem.setText("Ir a Pagar");
         PagarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,7 +293,7 @@ public class abmRegistros extends javax.swing.JInternalFrame {
         });
         jPopupMenu2.add(PagarItem);
 
-        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money_dollar.png"))); // NOI18N
+        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_attach_money_black_18dp.png"))); // NOI18N
         PagarInsItem.setText("Pagar Inscripcion");
         PagarInsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -521,9 +521,8 @@ public class abmRegistros extends javax.swing.JInternalFrame {
                                     .addComponent(txtacademico)
                                     .addComponent(txthorario))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblfechaini)
@@ -1028,7 +1027,7 @@ public class abmRegistros extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblalumno;
     private javax.swing.JLabel lblaula;
     private javax.swing.JLabel lblañoins;

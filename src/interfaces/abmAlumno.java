@@ -365,7 +365,7 @@ public class abmAlumno extends javax.swing.JInternalFrame {
         });
         jPopupMenu1.add(InscribirItem);
 
-        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money_dollar.png"))); // NOI18N
+        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_attach_money_black_18dp.png"))); // NOI18N
         PagarInsItem.setText("Pagar Inscripcion");
         PagarInsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,7 +374,7 @@ public class abmAlumno extends javax.swing.JInternalFrame {
         });
         jPopupMenu1.add(PagarInsItem);
 
-        PagosItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money.png"))); // NOI18N
+        PagosItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_monetization_on_black_18dp.png"))); // NOI18N
         PagosItem.setText("Ir a Pagar");
         PagosItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

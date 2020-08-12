@@ -6,7 +6,6 @@
 package interfaces;
 import static interfaces.abmPrincipal.panelA;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -33,7 +32,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -71,7 +69,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
     
     int idca,idalu,idper,idcur,idpi;
     int añoinsc,dni,maxpago;
-    float deudains,importe,precio,resto,variabledeuda;
+    float deudains,importe,precio,resto,variabledeuda,variableimporte,deuda;
     String curso,cursando,nombre,apellido,estado,legajo,pdfhora;
     Date fechapago;
     public int cboxitem=0;
@@ -221,12 +219,15 @@ public class abmEstado extends javax.swing.JInternalFrame {
                     }
                     if((importe>precio)&&(importe>=0)&&(chboxdeuda.isSelected()==false)){
                         resto=importe-precio;
+                        variableimporte=importe;
                         txtcambio.setText("$ ".concat(String.valueOf(resto)));
-                        clase.Estado.insertarPagoIns(cnx, dtepago.getDate(), importe, "PAGADO", idca);
+                        clase.Estado.insertarPagoIns(cnx, dtepago.getDate(), precio, "PAGADO", idca);
                         mostrarCursos();
                         mostrarEstado();
                         limpiarPago();
-                        recuperarDatosInforme();
+//                        recuperarDatosInforme();
+                        importe=variableimporte;
+                        fechapago=dtepago.getDate();
                         generarComprobante();
                     }
                 }
@@ -472,7 +473,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblcurso = new javax.swing.JTable();
 
-        PagarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money.png"))); // NOI18N
+        PagarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_monetization_on_black_18dp.png"))); // NOI18N
         PagarItem.setText("Ir a Pagar");
         PagarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -793,7 +794,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
             }
         });
 
-        btnpagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money.png"))); // NOI18N
+        btnpagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_monetization_on_black_18dp.png"))); // NOI18N
         btnpagar.setText("Pagar");
         btnpagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1170,15 +1171,21 @@ public class abmEstado extends javax.swing.JInternalFrame {
                     case 0:
                         if(estado.equalsIgnoreCase("PAGADO")){
                             if(importe<precio){
-                                txtcambio.setText("$ ".concat(String.valueOf(importe)));
-                                clase.Estado.deshacerPago(cnx, "IMPAGA", idpi);
+                                deuda=precio-importe;
                                 deudains=clase.Estado.buscarDeuda(cnx, idca);
-                                variabledeuda=precio-importe;
-                                resto=deudains-variabledeuda;
-                                clase.Estado.actualizarDeuda(cnx, resto, idca);
-                                actualizarDeuda();
-                                mostrarCursos();
-                                mostrarEstado();
+                                if(deudains>=deuda){
+                                    txtcambio.setText("$ ".concat(String.valueOf(importe)));
+                                    clase.Estado.deshacerPago(cnx, "IMPAGA", idpi);
+                                    variabledeuda=precio-importe;
+                                    resto=deudains-variabledeuda;
+                                    clase.Estado.actualizarDeuda(cnx, resto, idca);
+                                    actualizarDeuda();
+                                    mostrarCursos();
+                                    mostrarEstado();
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(this, "Lo sentimos...parte o la totalidad de la deuda\nde inscripcion a sido pagada.\n\nNo es posible deshacer el pago de la\ncuota de inscripcion en este momento","WARNING",WARNING_MESSAGE);
+                                }   
                             }
                             else{
                                 txtcambio.setText("$ ".concat(String.valueOf(precio)));
@@ -1189,7 +1196,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
                             }
                         }
                         else{
-                            JOptionPane.showMessageDialog(this, "La cuota no esta pagada");
+                            JOptionPane.showMessageDialog(this, "La cuota no esta pagada","ERROR",ERROR_MESSAGE);
                         }
                     break;
                     case 1:

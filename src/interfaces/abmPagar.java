@@ -9,7 +9,6 @@ package interfaces;
 //import com.itextpdf.text.pdf.PdfWriter;
 //import java.io.FileNotFoundException;
 //import java.io.FileOutputStream;
-import static com.itextpdf.text.pdf.PdfFileSpecification.url;
 import conexion.Conexion;
 import static interfaces.abmPrincipal.panelA;
 import java.awt.Dimension;
@@ -19,7 +18,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -90,7 +88,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
     int diavenc,mesvenc,añovenc;
     String fechavenc,ruta,nombrecurso,añocurso,fechainteres;
     String estadoimpaga="IMPAGA",estadopagado="PAGADO";
-    float interesalu,interescurso,gendeuda,deudaalu;
+    float interesalu,interescurso,gendeuda,deudaalu,deuda;
     float preciocuota,importetabla;
     //Varables para calcular el pago
     float restante,variable,variabledos,variabletres,importe;
@@ -1046,7 +1044,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
         });
         jPopupMenu2.add(RestaurarItem);
 
-        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money_dollar.png"))); // NOI18N
+        PagarInsItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_attach_money_black_18dp.png"))); // NOI18N
         PagarInsItem.setText("Pagar Inscripcion");
         PagarInsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1265,7 +1263,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
 
         txtcambio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        btnpagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/money.png"))); // NOI18N
+        btnpagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_monetization_on_black_18dp.png"))); // NOI18N
         btnpagar.setText("PAGAR");
         btnpagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1859,14 +1857,20 @@ public class abmPagar extends javax.swing.JInternalFrame {
                 if(op==0){
                     if(estadomes.equalsIgnoreCase(estadopagado)){
                         if(importetabla<preciocuota){
-                            txtcambio.setText("$ ".concat(String.valueOf(importetabla)));
-                            clase.Pagar.deshacerPago(cnx,estadoimpaga,idc);
+                            deuda=preciocuota-importetabla;
                             deudaalu=clase.Pagar.buscarDeuda(cnx,idca);
-                            variable=preciocuota-importetabla;
-                            gendeuda=deudaalu-variable;
-                            clase.Pagar.insertarDeuda(cnx,gendeuda,idca);
-                            actualizardeuda();
-                            tablaCuotas();
+                            if(deudaalu>=deuda){
+                                txtcambio.setText("$ ".concat(String.valueOf(importetabla)));
+                                clase.Pagar.deshacerPago(cnx,estadoimpaga,idc);
+                                variable=preciocuota-importetabla;
+                                gendeuda=deudaalu-variable;
+                                clase.Pagar.insertarDeuda(cnx,gendeuda,idca);
+                                actualizardeuda();
+                                tablaCuotas();
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(this, "Lo sentimos...parte o la totalidad de la deuda\ndel curso a sido pagada.\n\nNo es posible deshacer el pago de la\ncuota del curso en este momento","WARNING",WARNING_MESSAGE);
+                            }   
                         }
                         else{
                             txtcambio.setText("$ ".concat(String.valueOf(importetabla)));
