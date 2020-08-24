@@ -204,26 +204,52 @@ public class abmFeedback extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblcomentario = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtarcomentario = new javax.swing.JTextArea();
+        lbltitulo = new javax.swing.JLabel();
         lblimagen = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btnenviar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setTitle("Centro de Comentarios");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         lblcomentario.setText("Envíanos tus comentarios para mejorar la aplicación.");
+
+        jLabel1.setText("Reporta cualquier tipo de error para mejorar la aplicacíon. No se recolectara ningun tipo de informacíon personal");
+
+        jLabel2.setText("Si deseas una respuesta incluya por favor un medio de contacto e-mail, telefono, etc.");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)), "Comentario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 102, 102))); // NOI18N
 
         txtarcomentario.setColumns(20);
         txtarcomentario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtarcomentario.setLineWrap(true);
         txtarcomentario.setRows(5);
+        txtarcomentario.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txtarcomentario);
+
+        lbltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbltitulo.setText("Imagen");
 
         lblimagen.setForeground(new java.awt.Color(102, 102, 102));
         lblimagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -235,9 +261,6 @@ public class abmFeedback extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Imagen");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -247,7 +270,7 @@ public class abmFeedback extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbltitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -258,7 +281,7 @@ public class abmFeedback extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lbltitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -277,10 +300,6 @@ public class abmFeedback extends javax.swing.JInternalFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Reporta cualquier tipo de error para mejorar la aplicacíon. No se recolectara ningun tipo de informacíon personal");
-
-        jLabel2.setText("Si deseas una respuesta incluya por favor un medio de contacto e-mail, telefono, etc.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -378,17 +397,21 @@ public class abmFeedback extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_lblimagenMouseClicked
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formInternalFrameOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnenviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcomentario;
     private javax.swing.JLabel lblimagen;
-    public javax.swing.JTextArea txtarcomentario;
+    private javax.swing.JLabel lbltitulo;
+    private javax.swing.JTextArea txtarcomentario;
     // End of variables declaration//GEN-END:variables
     private static final Logger LOG = Logger.getLogger(abmFeedback.class.getName());
 }

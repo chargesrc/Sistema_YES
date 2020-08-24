@@ -96,7 +96,7 @@ public class abmPrincipal extends javax.swing.JFrame {
         ManualItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         InformacionItem = new javax.swing.JMenuItem();
-        CommentMenu = new javax.swing.JMenu();
+        ComMenu = new javax.swing.JMenu();
         ComentariosItem = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenu();
 
@@ -400,11 +400,12 @@ public class abmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(AyudaMenu);
 
-        CommentMenu.setForeground(new java.awt.Color(204, 204, 204));
-        CommentMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comment.png"))); // NOI18N
-        CommentMenu.setText("Feedback");
-        CommentMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ComMenu.setForeground(new java.awt.Color(204, 204, 204));
+        ComMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comment.png"))); // NOI18N
+        ComMenu.setText("Feedback");
+        ComMenu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        ComentariosItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, java.awt.event.InputEvent.ALT_MASK));
         ComentariosItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ic_comment_black_18dp.png"))); // NOI18N
         ComentariosItem.setText("Comentarios");
         ComentariosItem.addActionListener(new java.awt.event.ActionListener() {
@@ -412,9 +413,9 @@ public class abmPrincipal extends javax.swing.JFrame {
                 ComentariosItemActionPerformed(evt);
             }
         });
-        CommentMenu.add(ComentariosItem);
+        ComMenu.add(ComentariosItem);
 
-        jMenuBar1.add(CommentMenu);
+        jMenuBar1.add(ComMenu);
 
         Salir.setForeground(new java.awt.Color(204, 204, 204));
         Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close_delete.png"))); // NOI18N
@@ -678,16 +679,14 @@ public class abmPrincipal extends javax.swing.JFrame {
     private void ComentariosItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComentariosItemActionPerformed
         // TODO add your handling code here:
         panelA.removeAll();
-        abmFeedback comentario=new abmFeedback();
+        abmFeedback com=new abmFeedback();
         Dimension desktopSize=panelA.getSize();
-        Dimension FrameSize=comentario.getSize();
-        comentario.setLocation((desktopSize.width-FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
-        panelA.add(comentario);
-        comentario.pack();
-        comentario.setVisible(true);
-        Animacion.Animacion.mover_derecha(0 , 105, 5, 5, panelA);
-        comentario.show();
-        comentario.txtarcomentario.requestFocus(true);
+        Dimension FrameSize=com.getSize();
+        com.setLocation((desktopSize.width-FrameSize.width)/53,(desktopSize.height-FrameSize.height)/45);
+        panelA.add(com);
+        Animacion.Animacion.mover_derecha(0, 105, 5, 5, panelA);
+        com.show();
+//        com.txtarcomentario.requestFocus(true);
     }//GEN-LAST:event_ComentariosItemActionPerformed
 
     /**
@@ -733,8 +732,8 @@ public class abmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem AlumnoItem;
     private javax.swing.JMenu AyudaMenu;
     private javax.swing.JMenu BackupMenu;
+    private javax.swing.JMenu ComMenu;
     private javax.swing.JMenuItem ComentariosItem;
-    private javax.swing.JMenu CommentMenu;
     private javax.swing.JMenuItem CursoItem;
     private javax.swing.JMenuItem HorarioItem;
     private javax.swing.JMenuItem InformacionItem;
