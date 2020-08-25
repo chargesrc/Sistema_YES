@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -320,7 +321,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
                 try{    
 //                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteInsc.jrxml");
 //                    JasperDesign jd=JRXmlLoader.load("src/reportes/rpComprobanteInsc.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
-                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobanteInsc.jrxml"));
+                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobanteInscripcion.jrxml"));
                     JasperReport report=JasperCompileManager.compileReport(jd);
                     JasperPrint print=JasperFillManager.fillReport(report, parametros, new JREmptyDataSource());
                     JasperViewer jv=new JasperViewer(print,false);
@@ -1343,4 +1344,5 @@ public class abmEstado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtdeudainsc;
     private javax.swing.JTextField txtimporte;
     // End of variables declaration//GEN-END:variables
+    private static final Logger LOG = Logger.getLogger(abmEstado.class.getName());
 }

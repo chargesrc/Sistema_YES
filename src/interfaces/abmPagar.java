@@ -706,7 +706,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
         try {
 //            JasperReport report=JasperCompileManager.compileReport(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteGen.jrxml");
 //            JasperReport report=JasperCompileManager.compileReport("src/reportes/rpComprobanteGen.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
-            JasperReport report=JasperCompileManager.compileReport(getClass().getResourceAsStream("/reportes/rpComprobanteGen.jrxml"));//Obtenemos el recurso del jar del proyecto creado
+            JasperReport report=JasperCompileManager.compileReport(getClass().getResourceAsStream("/reportes/rpComprobanteGeneral.jrxml"));//Obtenemos el recurso del jar del proyecto creado
             JasperPrint print=JasperFillManager.fillReport(report,parametros,cnx);
             JasperViewer view=new JasperViewer(print,false);
             view.setTitle("Comprobante de Pago General");
@@ -761,7 +761,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
                 try{
 //                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobante.jrxml");
 //                    JasperDesign jd=JRXmlLoader.load("src/reportes/rpComprobante.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
-                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobante.jrxml"));//pueden cargar ambos ficheros jasper cambiar JRXmlLoader por JRLoader deberan cargarlo com dato stream
+                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobanteUnitario.jrxml"));//pueden cargar ambos ficheros jasper cambiar JRXmlLoader por JRLoader deberan cargarlo com dato stream
                     JasperReport report=JasperCompileManager.compileReport(jd);
                     final JasperPrint print=JasperFillManager.fillReport(report, parametros, new JREmptyDataSource());
                     JasperViewer ver=new JasperViewer(print, false);//el false evita que se cierre la aplicacion cuando se cierre el comprobante
@@ -808,7 +808,7 @@ public class abmPagar extends javax.swing.JInternalFrame {
         parametros.put("mes", mespago);
         parametros.put("importe", importetabla);
         try{
-            JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobante.jrxml");
+            JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteUnitario.jrxml");
             JasperReport report=JasperCompileManager.compileReport(jd);
             final JasperPrint print=JasperFillManager.fillReport(report, parametros, new JREmptyDataSource()); 
             File carp=new File("C:\\Users\\Public\\Pictures\\sistemaYES\\"+nombre+" "+apellido+" - "+dnialu);
