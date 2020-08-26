@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpComprobanteGen" language="java" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b239564c-7b84-4218-9eec-d2e5098d076f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpComprobanteGen" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b239564c-7b84-4218-9eec-d2e5098d076f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="121"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -279,7 +279,7 @@
 								<text><![CDATA[Mes]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
 							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="70" height="14" uuid="971cb138-6c5f-4eee-8cf0-225c0f1ef3ad"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -299,7 +299,7 @@
 								<text><![CDATA[Fecha Vencimiento]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
 							<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="70" height="14" uuid="112ca028-c137-4ce9-b43d-5b4ee50ae032"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -319,7 +319,7 @@
 								<text><![CDATA[Importe]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
 							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="70" height="14" uuid="1bf59a76-21e9-452c-89cb-acceb936886f"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -339,7 +339,7 @@
 								<text><![CDATA[Estado]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
 							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="70" height="14" uuid="82f8eb1e-b249-4c1c-baad-b75fb3a2c8d6"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -359,7 +359,7 @@
 								<text><![CDATA[Interes]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
 							<textField isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="70" height="14" uuid="d6977508-167f-47f0-b425-c321ff5bf245"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -379,7 +379,7 @@
 								<text><![CDATA[Fecha de Pago]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="14" rowSpan="1">
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
 							<textField pattern="dd-MM-yyyy" isBlankWhenNull="true">
 								<reportElement x="0" y="0" width="70" height="14" uuid="8266d3a0-55b3-4fc1-a725-3c0b424334e7"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">

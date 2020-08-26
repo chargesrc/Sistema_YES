@@ -302,7 +302,7 @@ public class abmEstado extends javax.swing.JInternalFrame {
         int op=JOptionPane.showConfirmDialog(this, "Desea generar el comprobante?");
         switch(op){
             case 0:
-                ImageIcon imagen=new ImageIcon(getClass().getResource("/iconos/logo_yes.png"));//Obtenemos como fuente de la imagen nuestro proyecto jar en la carpeta dist
+                ImageIcon imagen=new ImageIcon(this.getClass().getResource("/iconos/logo_yes.png"));//Obtenemos como fuente de la imagen nuestro proyecto jar en la carpeta dist
                 HashMap<String, Object> parametros = new HashMap<>();
                 //Parametros de la imagen
                 parametros.put("imagen", imagen.getImage());
@@ -319,9 +319,9 @@ public class abmEstado extends javax.swing.JInternalFrame {
                 parametros.put("deudains", variabledeuda);
                 parametros.put("importe", importe);
                 try{    
-//                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteInsc.jrxml");
-//                    JasperDesign jd=JRXmlLoader.load("src/reportes/rpComprobanteInsc.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
-                    JasperDesign jd=JRXmlLoader.load(getClass().getResourceAsStream("/reportes/rpComprobanteInscripcion.jrxml"));
+//                    JasperDesign jd=JRXmlLoader.load(new File("").getAbsolutePath()+"/src/reportes/rpComprobanteInscripcion.jrxml");
+//                    JasperDesign jd=JRXmlLoader.load("src/reportes/rpComprobanteInscripcion.jrxml");//Para evitar el mal direccionamiento del comprobante en ejecucion
+                    JasperDesign jd=JRXmlLoader.load(this.getClass().getResourceAsStream("/reportes/rpComprobanteInscripcion.jrxml"));
                     JasperReport report=JasperCompileManager.compileReport(jd);
                     JasperPrint print=JasperFillManager.fillReport(report, parametros, new JREmptyDataSource());
                     JasperViewer jv=new JasperViewer(print,false);
