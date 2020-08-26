@@ -1,3 +1,5 @@
+Se agrego una libreria para compilar los reportes desde el classpath.
+
 Se resolvio el problema de abrir una interface desde el instalador jar.
 
 Se actualizo el manual de usuario por los cambios recientes.
